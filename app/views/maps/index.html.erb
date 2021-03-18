@@ -1,0 +1,33 @@
+<h2>gmap</h2>
+<div id='map'></div>
+
+<%# ビューに直接スタイルを当てて大きさを指定しているが、マップの大きさを指定しないと表示されないので本来はCSSに書く %>
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    //   centerで初期位置の緯度経度を示してる。（latが緯度、lngが経度）
+    center: {lat: 40.7828, lng:-73.9653},
+    // zoomは表示領域の大きさ（０〜２１まである）
+    zoom: 12,
+  });
+
+  //  positionに指定した座標にピンを表示させます
+  marker = new google.maps.Marker({
+    position:  {lat: 40.7828, lng:-73.9653},
+    map: map
+  });
+}
+</script>
+<%# <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> の「YOUR_API_KEY」部分にAPIキーを入れる  %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcjV7VVCbvWZ7w0GWtdLPR4rMtJRMTLEI&callback=initMap" async defer></script>
